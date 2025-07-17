@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>My Profile</title>
+  <style>
+    /* style the page */
+    body {
+      font-family: Arial;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 10px;
+      text-decoration: none;
+    }
+
+    footer {
+      background-color: #eee;
+      padding: 10px;
+      width: 100%;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      text-align: center;
+    }
+
+    #myImage {
+      display: none;
+      width: 400px;
+
+    }
+
+    .container {
+      padding: 40px;
+      height: calc(100vh - 189px);
+      text-align: center;
+      position: relative;
+      font-style: italic;
+      font-size: larger;
+    }
+
+    .text {
+      height: 100%;
+      width: 100%;
+      position: relative;
+      z-index: 5;
+    }
+
+    .bg-image {
+      position: absolute;
+      opacity: 0;
+      inset: 0;
+      background-image: none;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    /* to make the background appear*/
+    .bg-image.show-bg {
+      background-image: url('./my photo.jpg');
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Wisal Ali</h1>
+    <nav> <!-- link the pages -->
+      <a href="index.html">Profile</a> |
+      <a href="grades.html">Grades</a> |
+      <a href="staff.html">Staff</a> |
+      <a href="temperature.html">Temperature</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="text"> <!-- paragraph-->
+      <p>Welcome to my profile page. </p>
+      <p>Enjoy navegate through out my simple website pages.</p>
+    </div>
+    <div class="bg-image"></div>
+
+  </div>
+
+  <footer>
+    <p>&copy; Wisal Ali - <span id="currentDate"></span></p>
+  </footer>
+
+  <script> // java script //
+
+    // Show image after 10 seconds
+    setTimeout(() => {
+      document.querySelector('.bg-image').classList.add('show-bg')
+    }, 10000)
+
+    // Show current date
+    const today = new Date();
+    document.getElementById("currentDate").innerText = today.toDateString();
+  </script>
+
+</body>
+
+</html>

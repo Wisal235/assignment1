@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Temperature</title>
+  <style>
+    /* style the page */
+    body {
+      font-family: Arial;
+      margin: 0;
+      padding: 0;
+    }
+
+    footer {
+      background-color: #eee;
+      padding: 10px;
+      width: 100%;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      text-align: center;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      padding: 10px;
+
+    }
+
+    nav a {
+      color: white;
+      margin: 10px;
+      text-decoration: none;
+    }
+
+    header,
+    footer {
+      text-align: center;
+
+    }
+
+    main {
+      align-content: center;
+      height: calc(100vh - 189px);
+    }
+
+    .container {
+      width: max-content;
+      margin: 0 auto;
+    }
+
+    #result {
+      white-space: pre-line;
+
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Temperature Converter</h1>
+    <nav> <!-- link the pages -->
+      <a href="index.html">Profile</a> |
+      <a href="grades.html">Grade</a> |
+      <a href="staff.html">Staff</a> |
+      <a href="temperature.html">Temperature</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- enter the temperature-->
+    <div class="container">
+      <label for="tempInput">Enter Temperature:</label>
+      <input type="number" id="tempInput" placeholder="e.g., 25">
+
+      <!-- choose the unit to convert-->
+      <select id="conversionType">
+        <option value="CtoF">Celsius to Fahrenheit and Kelvin</option>
+        <option value="FtoC">Fahrenheit to Celsius and Kelvin</option>
+        <option value="KtoC">Kelvin to Celsius and Fahrenheit</option>
+      </select>
+
+      <button onclick="convertTemperature()">Convert</button>
+
+      <h3 id="result"></h3>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>&copy; Wisal Ali - <span id="currentDate"></span></p>
+  </footer>
+
+  <script> // java script //
+    function convertTemperature() {
+      const input = parseFloat(document.getElementById("tempInput").value); // take the input from the user
+      const type = document.getElementById("conversionType").value; // take the unit chosen
+      const resultElement = document.getElementById("result"); // show the result
+
+
+      if (isNaN(input)) {
+        resultElement.textContent = "Please enter a valid number.";
+        return;
+      }
+
+      let result;
+      let result2;
+
+      // calculate between the units
+      if (type === "CtoF") {
+        result = (input * 9 / 5) + 32; //celscius to fa
+        result2 = input + 273.15; //celscius to kelvin
+
+        resultElement.textContent = `${input}°C is ${result.toFixed(2)}°F \n ${result2.toFixed(2)}K`;
+      } else if (type === "FtoC") {
+        result = (input - 32) * 5 / 9; //fa to celscius
+        result2 = (input - 32) * 5 / 9 + 273.15; //fa to kelvin
+        resultElement.textContent = `${input}°F is ${result.toFixed(2)}°C \n ${result2.toFixed(2)}K`;
+      }
+      else {
+        result = input - 273.15; //K to celscius
+        result2 = (input - 273.15) * 9 / 5 + 32; //K to fa
+        resultElement.textContent = `${input}K is ${result.toFixed(2)}°C  \n ${result2.toFixed(2)}°F`;
+      }
+    }
+
+    const today = new Date();
+    document.getElementById("currentDate").innerText = today.toDateString();
+  </script>
+</body>
+
+</html>
